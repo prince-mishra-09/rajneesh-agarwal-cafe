@@ -8,6 +8,7 @@
   <title>Rajneesh Agarwal — Café Business Consultant</title>
   
   <!-- High-Performance Native System Font Stack (Zero External Latency) -->
+  <link rel="preload" as="image" href="assets/rajneesh-portrait.png" fetchpriority="high">
 
   <style>
     /* ==========================================================================
@@ -114,6 +115,8 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
+      max-width: 100vw;
     }
 
     section, main {
@@ -130,6 +133,9 @@
       font-family: var(--font-body);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      max-width: 100vw;
+      width: 100%;
+      -webkit-overflow-scrolling: touch;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
@@ -215,12 +221,16 @@
     }
 
     .brand-text .role {
-      font-size: 8.5px;
+      font-size: 9px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
+      letter-spacing: 0.12em;
       color: var(--text-muted);
       font-weight: 700;
       margin-top: 1px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
     }
 
     /* Live Advisory Slots Pill */
@@ -4414,6 +4424,9 @@
       position: relative;
       border-radius: 28px;
       overflow: visible;
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
     }
 
     .consultant-portrait-frame {
@@ -4438,46 +4451,56 @@
       transform: scale(1.03);
     }
 
-    /* Overlapping Experience Badge (Bottom Right) */
+    /* Overlapping Experience Badge (Bottom Right - Contained & Never Cut Off) */
     .consultant-badge-exp {
       position: absolute;
-      bottom: -18px;
-      right: 20px;
+      bottom: 16px;
+      right: 16px;
       background: var(--cta-gradient);
       color: #ffffff;
-      padding: 12px 22px;
+      padding: 10px 18px;
       border-radius: 14px;
       font-family: var(--font-heading);
-      font-size: 15px;
-      font-weight: 900;
+      font-size: 13.5px;
+      font-weight: 800;
       letter-spacing: -0.01em;
-      box-shadow: var(--cta-shadow), 0 10px 25px rgba(4, 120, 87, 0.35);
+      box-shadow: var(--cta-shadow), 0 10px 25px rgba(4, 120, 87, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.35);
       display: flex;
       align-items: center;
-      gap: 8px;
-      z-index: 3;
+      gap: 7px;
+      z-index: 4;
+      pointer-events: none;
+      max-width: calc(100% - 32px);
+      box-sizing: border-box;
     }
 
     .consultant-badge-exp span {
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
     /* Top Left Trust Pill */
     .consultant-badge-trust {
       position: absolute;
-      top: 20px;
-      left: 20px;
+      top: 16px;
+      left: 16px;
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--border-bright);
       color: var(--accent-sage);
       font-size: 11.5px;
       font-weight: 800;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 999px;
       box-shadow: 0 4px 14px rgba(16, 185, 129, 0.15);
-      z-index: 2;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+      max-width: calc(100% - 32px);
+      box-sizing: border-box;
     }
 
     [data-theme="evening"] .consultant-badge-trust {
@@ -4572,31 +4595,40 @@
       font-weight: 600;
     }
 
-    /* Instagram Creator Card (Matching Exact Reference Screenshot with Fresh Mint Polish) */
+    /* Instagram Creator Card (Masterclass Authentic Instagram Mobile & Desktop Widget) */
     .consultant-insta-card {
       background: var(--panel-glass);
       backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border: 1.5px solid var(--border-bright);
-      border-radius: 18px;
-      padding: 16px 20px;
+      border-radius: 20px;
+      padding: 20px 22px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 16px;
-      box-shadow: var(--card-shadow);
-      margin-top: 10px;
+      box-shadow: var(--card-shadow), 0 12px 30px rgba(16, 185, 129, 0.08);
+      margin-top: 14px;
+      width: 100%;
+      box-sizing: border-box;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
 
-    .insta-left-group {
+    .consultant-insta-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(16, 185, 129, 0.4);
+      box-shadow: var(--card-shadow), 0 16px 36px rgba(16, 185, 129, 0.14);
+    }
+
+    .insta-top-header {
       display: flex;
       align-items: center;
       gap: 14px;
-      min-width: 0;
+      width: 100%;
     }
 
     .insta-avatar-ring {
-      width: 50px;
-      height: 50px;
+      width: 54px;
+      height: 54px;
       border-radius: 50%;
       padding: 2.5px;
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -4604,87 +4636,144 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
     }
 
-    .insta-avatar-ring img {
+    .insta-avatar-ring img,
+    .insta-avatar-img {
       width: 100%;
       height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid #ffffff;
+      border: 2px solid var(--bg-base);
       display: block;
     }
 
-    .insta-meta-wrap {
+    .insta-identity-stack {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
       min-width: 0;
+      flex: 1;
     }
 
-    .insta-title-row {
+    .insta-name-badge-row {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      flex-wrap: wrap;
     }
 
-    .insta-title-text {
+    .insta-profile-name {
       font-family: var(--font-heading);
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--text-main);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.2;
     }
 
     .insta-verified-icon {
-      width: 14px;
-      height: 14px;
-      color: #3b82f6;
+      width: 15px;
+      height: 15px;
+      color: #0095f6;
       flex-shrink: 0;
     }
 
+    .insta-official-pill {
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-mint);
+      border: 1px solid var(--border-bright);
+    }
+
     .insta-handle-text {
-      font-size: 11.5px;
+      font-size: 12px;
       color: var(--text-muted);
       font-weight: 600;
     }
 
-    .insta-metrics-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 11px;
+    .insta-category-tag {
+      font-size: 11.5px;
       color: var(--text-subtle);
-      margin-top: 2px;
+      font-weight: 500;
+      line-height: 1.3;
     }
 
-    .insta-metrics-row strong {
-      color: var(--text-main);
+    /* 3-Column Stats Strip */
+    .insta-stats-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background: rgba(16, 185, 129, 0.05);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 10px 14px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .insta-stat-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+    }
+
+    .insta-stat-unit .stat-number {
+      font-family: var(--font-heading);
+      font-size: 15px;
       font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .insta-stat-unit .stat-label {
+      font-size: 10.5px;
+      color: var(--text-subtle);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .insta-stat-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border-subtle);
+    }
+
+    .insta-action-row {
+      width: 100%;
     }
 
     .btn-insta-follow {
-      padding: 9px 20px;
-      background: var(--cta-gradient);
-      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 12px 20px;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #ffffff !important;
       font-family: var(--font-heading);
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 800;
-      border-radius: 8px;
+      border-radius: 10px;
       text-decoration: none;
-      white-space: nowrap;
-      box-shadow: var(--cta-shadow);
+      box-shadow: 0 6px 20px rgba(220, 39, 67, 0.3);
       border: 1px solid rgba(255, 255, 255, 0.25);
-      transition: all 0.2s ease;
-      flex-shrink: 0;
+      transition: all 0.25s ease;
+      box-sizing: border-box;
     }
 
     .btn-insta-follow:hover {
       transform: translateY(-2px);
       filter: brightness(1.1);
-      box-shadow: 0 8px 22px rgba(4, 120, 87, 0.45);
+      box-shadow: 0 10px 25px rgba(220, 39, 67, 0.45);
       color: #ffffff;
     }
 
@@ -4728,19 +4817,11 @@
       .consultant-credentials-grid {
         grid-template-columns: repeat(2, 1fr);
       }
-      .consultant-insta-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .btn-insta-follow {
-        width: 100%;
-        text-align: center;
-      }
       .consultant-badge-exp {
-        bottom: -14px;
-        right: 10px;
-        padding: 9px 16px;
-        font-size: 13px;
+        bottom: 12px;
+        right: 12px;
+        padding: 7px 12px;
+        font-size: 12px;
       }
     }
 
@@ -6002,6 +6083,69 @@
     }
 
     @media (max-width: 768px) {
+      /* Navbar Brand & Actions: Single-Line, Clean & Polished on All Phones */
+      .site-header {
+        padding: 0 12px !important;
+      }
+      .header-inner {
+        gap: 6px !important;
+        height: 56px !important;
+      }
+      .brand-group {
+        gap: 8px !important;
+        flex-shrink: 0 !important;
+      }
+      .brand-logo-icon {
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 8px !important;
+        flex-shrink: 0 !important;
+      }
+      .brand-text {
+        white-space: nowrap !important;
+      }
+      .brand-text .name {
+        font-size: 14.5px !important;
+        line-height: 1.15 !important;
+        white-space: nowrap !important;
+      }
+      .brand-text .role {
+        font-size: 8.5px !important;
+        letter-spacing: 0.08em !important;
+        font-weight: 700 !important;
+        color: var(--accent-mint) !important;
+        margin-top: 1.5px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        white-space: nowrap !important;
+      }
+      .brand-text .role::before {
+        content: "" !important;
+        display: inline-block !important;
+        width: 3.5px !important;
+        height: 3.5px !important;
+        border-radius: 50% !important;
+        background: var(--accent-mint) !important;
+        flex-shrink: 0 !important;
+      }
+      .header-right-actions {
+        gap: 6px !important;
+        flex-shrink: 0 !important;
+      }
+      .header-cta-btn {
+        padding: 7px 11px !important;
+        font-size: 11.5px !important;
+        gap: 5px !important;
+        border-radius: 6px !important;
+        white-space: nowrap !important;
+      }
+      .mobile-menu-toggle {
+        width: 34px !important;
+        height: 34px !important;
+        flex-shrink: 0 !important;
+      }
+
       .hero-main {
         padding: 20px 0 32px !important;
         min-height: auto !important;
@@ -6014,6 +6158,30 @@
       }
       .orbit-revolving-system {
         grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .proof-badge {
+        white-space: normal !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        word-break: normal !important;
+        overflow-wrap: break-word !important;
+        padding: 8px 10px !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .badge-copy-stack {
+        min-width: 0 !important;
+        overflow: hidden !important;
+      }
+      .badge-metric-value {
+        font-size: 13px !important;
+        line-height: 1.2 !important;
+      }
+      .badge-metric-label {
+        font-size: 10px !important;
+        line-height: 1.25 !important;
       }
       .portrait-box {
         max-height: 360px !important;
@@ -6045,6 +6213,84 @@
       }
       .city-pills-row {
         justify-content: center !important;
+      }
+
+      /* Meet Your Consultant Section Phone View Overhaul */
+      .consultant-section {
+        padding: 55px 16px !important;
+      }
+      .consultant-eyebrow-wrap {
+        margin-bottom: 24px !important;
+      }
+      .consultant-grid {
+        grid-template-columns: 1fr !important;
+        gap: 26px !important;
+        width: 100% !important;
+      }
+      .consultant-portrait-wrap {
+        max-width: 330px !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        position: relative !important;
+      }
+      .consultant-portrait-frame {
+        aspect-ratio: 4 / 5 !important;
+        border-radius: 22px !important;
+        box-shadow: 0 16px 36px rgba(16, 185, 129, 0.16) !important;
+      }
+      .consultant-badge-trust {
+        top: 12px !important;
+        left: 12px !important;
+        font-size: 10.5px !important;
+        padding: 4px 10px !important;
+        max-width: calc(100% - 24px) !important;
+      }
+      .consultant-badge-exp {
+        bottom: 12px !important;
+        right: 12px !important;
+        font-size: 12px !important;
+        padding: 7px 12px !important;
+        border-radius: 10px !important;
+        max-width: calc(100% - 24px) !important;
+      }
+      .consultant-main-title {
+        font-size: clamp(23px, 6vw, 30px) !important;
+        line-height: 1.2 !important;
+      }
+      .consultant-intro-lead {
+        font-size: 14.5px !important;
+        line-height: 1.6 !important;
+      }
+      .consultant-framework-p {
+        font-size: 13.5px !important;
+        line-height: 1.6 !important;
+      }
+      .consultant-credentials-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+      }
+      .consultant-cred-card {
+        padding: 10px 12px !important;
+        border-radius: 12px !important;
+      }
+      .cred-stat {
+        font-size: 17px !important;
+      }
+      .cred-desc {
+        font-size: 10.5px !important;
+      }
+      .consultant-insta-card {
+        padding: 16px !important;
+        border-radius: 16px !important;
+      }
+
+      /* Mobile GPU & Smooth Scroll Optimization */
+      .stage-ambient-light,
+      .consultant-ambient-glow,
+      .mosaic-ambient-glow,
+      .availability-ambient-glow,
+      .blueprint-ambient-glow {
+        display: none !important;
       }
 
       /* Roadmap Stepper Nodes Horizontal Scroll */
@@ -6432,7 +6678,7 @@
         </div>
 
         <div class="portrait-box">
-          <img src="assets/rajneesh-portrait.png" alt="Rajneesh Agarwal - India's Top Café Business Consultant" class="rajneesh-photo" loading="eager">
+          <img src="assets/rajneesh-portrait.png" alt="Rajneesh Agarwal - India's Top Café Business Consultant" class="rajneesh-photo" loading="eager" fetchpriority="high" decoding="async">
         </div>
       </div>
     </div>
@@ -7786,7 +8032,7 @@
             src="assets/reel2.mp4" 
             playsinline 
             loop 
-            preload="metadata"
+            preload="none"
           ></video>
 
           <!-- Floating Central Play / Pause Button -->
@@ -7836,7 +8082,7 @@
             src="assets/reel3.mp4" 
             playsinline 
             loop 
-            preload="metadata"
+            preload="none"
           ></video>
 
           <!-- Floating Central Play / Pause Button -->
@@ -7923,7 +8169,7 @@
             
             <!-- Item 1: Pool & Sports Café -->
             <div class="mosaic-item">
-              <img src="assets/client-cafe-pool.jpg" loading="lazy" alt="Client Sports & Game Café" loading="lazy">
+              <img src="assets/client-cafe-pool.jpg" loading="lazy" decoding="async" alt="Client Sports & Game Café">
               <div class="mosaic-caption-overlay">
                 <span class="mosaic-city-tag"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Pune, MH</span>
                 <span class="mosaic-cafe-title">Brew & Break • Game & Coffee Lounge</span>
@@ -7932,7 +8178,7 @@
 
             <!-- Item 2: Cozy Artistic Interior -->
             <div class="mosaic-item">
-              <img src="assets/client-cafe-interior.jpg" loading="lazy" alt="Artistic Boutique Café Interior" loading="lazy">
+              <img src="assets/client-cafe-interior.jpg" loading="lazy" decoding="async" alt="Artistic Boutique Café Interior">
               <div class="mosaic-caption-overlay">
                 <span class="mosaic-city-tag"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bengaluru, KA</span>
                 <span class="mosaic-cafe-title">The Artloft Café • Specialty Roastery</span>
@@ -7941,7 +8187,7 @@
 
             <!-- Item 3: Flagship Storefront at Night -->
             <div class="mosaic-item">
-              <img src="assets/client-cafe-storefront.jpg" loading="lazy" alt="2-Story Flagship Café Storefront" loading="lazy">
+              <img src="assets/client-cafe-storefront.jpg" loading="lazy" decoding="async" alt="2-Story Flagship Café Storefront">
               <div class="mosaic-caption-overlay">
                 <span class="mosaic-city-tag"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Mumbai, MH</span>
                 <span class="mosaic-cafe-title">The Brew Room • 2-Story Flagship</span>
@@ -7951,7 +8197,7 @@
             <!-- Item 4: Happy Founder Opening Day (Highlighted Frame) -->
             <div class="mosaic-item highlight-frame">
               <span class="mosaic-featured-badge"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> 100+ Orders Day 1</span>
-              <img src="assets/client-cafe-founder.jpg" loading="lazy" alt="Café Founder Grand Opening Celebration" loading="lazy">
+              <img src="assets/client-cafe-founder.jpg" loading="lazy" decoding="async" alt="Café Founder Grand Opening Celebration">
               <div class="mosaic-caption-overlay">
                 <span class="mosaic-city-tag"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Delhi NCR</span>
                 <span class="mosaic-cafe-title">Brew & Bloom • Grand Opening Day 1</span>
@@ -8030,7 +8276,7 @@
         <!-- Left: Portrait Card with rajnees.jpg -->
         <div class="consultant-portrait-wrap">
           <div class="consultant-portrait-frame">
-            <img src="assets/rajnees.jpg" loading="lazy" alt="Rajneesh Agarwal — Café Business Consultant & Strategist" class="consultant-portrait-img">
+            <img src="assets/rajnees.jpg" loading="lazy" decoding="async" alt="Rajneesh Agarwal — Café Business Consultant & Strategist" class="consultant-portrait-img">
           </div>
 
           <!-- Floating Trust Chip (Top Left) -->
@@ -8038,9 +8284,10 @@
             <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> <span>4.9/5 Rating • 500+ Cafés</span>
           </div>
 
-          <!-- Floating Overlapping Experience Badge (Bottom Right) -->
+          <!-- Floating Overlapping Experience Badge (Bottom Right - Clean & Contained) -->
           <div class="consultant-badge-exp">
-            <span>5+ Years<br>of Expertise</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>5+ Years Experience</span>
           </div>
         </div>
 
@@ -8080,33 +8327,51 @@
             </div>
           </div>
 
-          <!-- Embedded Instagram Creator Card (Matching Exact Reference) -->
-          <div class="consultant-insta-card">
-            <div class="insta-left-group">
+          <!-- Embedded Instagram Creator Card (Masterclass Mobile & Desktop Profile Embed) -->
+          <div class="consultant-insta-card" id="consultant-insta-card">
+            <div class="insta-top-header">
               <div class="insta-avatar-ring">
-                <img src="assets/rajnees.jpg" loading="lazy" alt="Rajneesh Agarwal Instagram Avatar">
+                <img src="assets/rajnees.jpg" loading="lazy" decoding="async" alt="Rajneesh Agarwal" class="insta-avatar-img">
               </div>
 
-              <div class="insta-meta-wrap">
-                <div class="insta-title-row">
-                  <span class="insta-title-text">Rajneesh agarwal | Cafe Coach | Bussiness Consultant</span>
-                  <svg class="insta-verified-icon" viewBox="0 0 24 24" fill="currentColor">
+              <div class="insta-identity-stack">
+                <div class="insta-name-badge-row">
+                  <span class="insta-profile-name">Rajneesh Agarwal</span>
+                  <svg class="insta-verified-icon" viewBox="0 0 24 24" fill="#0095f6" aria-label="Verified Profile">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                   </svg>
+                  <span class="insta-official-pill">Creator</span>
                 </div>
-                <span class="insta-handle-text">cafeconsultant_rajneesh</span>
-                
-                <div class="insta-metrics-row">
-                  <span><strong>265</strong> posts</span>
-                  <span><strong>47.7K</strong> followers</span>
-                  <span><strong>532</strong> following</span>
-                </div>
+                <span class="insta-handle-text">@cafeconsultant_rajneesh</span>
+                <span class="insta-category-tag">Café Coach &amp; Business Consultant</span>
               </div>
             </div>
 
-            <a href="https://www.instagram.com/rajneeshagarwal_/" target="_blank" rel="noopener noreferrer" class="btn-insta-follow">
-              Follow
-            </a>
+            <div class="insta-stats-strip">
+              <div class="insta-stat-unit">
+                <span class="stat-number">265</span>
+                <span class="stat-label">Posts</span>
+              </div>
+              <div class="insta-stat-divider"></div>
+              <div class="insta-stat-unit">
+                <span class="stat-number">47.7K</span>
+                <span class="stat-label">Followers</span>
+              </div>
+              <div class="insta-stat-divider"></div>
+              <div class="insta-stat-unit">
+                <span class="stat-number">532</span>
+                <span class="stat-label">Following</span>
+              </div>
+            </div>
+
+            <div class="insta-action-row">
+              <a href="https://www.instagram.com/rajneeshagarwal_/" target="_blank" rel="noopener noreferrer" class="btn-insta-follow">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                <span>Follow on Instagram</span>
+              </a>
+            </div>
           </div>
 
         </div>
