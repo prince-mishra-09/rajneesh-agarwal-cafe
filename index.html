@@ -9436,14 +9436,86 @@
     </div>
   </footer>
 
-  <!-- Theme Switcher & Interactive Tabs Script -->
-  <!-- 5-Second Interactive Lead Capture Popup Modal (Matching Reference) -->
+  <!-- 5-Second Interactive Lead Capture Popup Modal (Fresh Mint Theme) -->
   <div class="lead-modal-overlay" id="lead-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
     <div class="lead-modal-card">
       <!-- Close Button -->
       <button type="button" class="lead-modal-close" id="lead-modal-close" aria-label="Close Modal">✕</button>
 
+      <!-- Modal Header -->
+      <div class="lead-modal-header">
+        <span class="lead-rocket-icon" aria-hidden="true">🚀</span>
+        <h2 class="lead-modal-title" id="lead-modal-title">Start Your Cafe Journey</h2>
+      </div>
+
+      <!-- Form Body -->
+      <form class="lead-modal-form" id="lead-modal-form" novalidate>
+        <div class="lead-form-field">
+          <input type="text" id="lead-name" name="name" class="lead-input" placeholder="Full Name" required autocomplete="name">
+        </div>
+
+        <div class="lead-form-field">
+          <input type="tel" id="lead-phone" name="phone" class="lead-input" placeholder="WhatsApp Number" required autocomplete="tel">
+        </div>
+
+        <div class="lead-form-field">
+          <select id="lead-option" name="option" class="lead-input lead-select" required>
+            <option value="" disabled selected>Select Option</option>
+            <option value="Starting a New Café">Starting a New Café</option>
+            <option value="Scaling an Existing Café">Scaling an Existing Café</option>
+            <option value="Location &amp; Feasibility Audit">Location &amp; Feasibility Audit</option>
+            <option value="Menu Engineering &amp; Costing">Menu Engineering &amp; Costing</option>
+            <option value="Franchise / Expansion Setup">Franchise / Expansion Setup</option>
+          </select>
+        </div>
+
+        <div class="lead-form-field">
+          <select id="lead-budget" name="budget" class="lead-input lead-select" required>
+            <option value="" disabled selected>Select Budget</option>
+            <option value="₹5 Lakhs – ₹15 Lakhs">₹5 Lakhs – ₹15 Lakhs</option>
+            <option value="₹15 Lakhs – ₹30 Lakhs">₹15 Lakhs – ₹30 Lakhs</option>
+            <option value="₹30 Lakhs – ₹50 Lakhs">₹30 Lakhs – ₹50 Lakhs</option>
+            <option value="₹50 Lakhs+">₹50 Lakhs+</option>
+          </select>
+        </div>
+
+        <button type="submit" class="lead-submit-btn" id="lead-submit-btn">
+          <span>Submit</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </form>
+
+      <!-- Success State Message -->
+      <div class="lead-modal-success" id="lead-modal-success" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="success-title">Application Received!</h3>
+        <p class="success-desc">Thank you, <strong id="success-user-name">Entrepreneur</strong>. Rajneesh's consulting team will reach out to you on WhatsApp within 15 minutes.</p>
+        <a href="https://wa.me/91XXXXXXXXXX" id="lead-wa-direct-btn" target="_blank" rel="noopener noreferrer" class="btn-wa-direct">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.074-2.115-.515-1.815-.752-3.003-2.616-3.094-2.738-.09-.12-1.745-2.324-1.745-4.433 0-2.109 1.107-3.146 1.498-3.578.391-.433.853-.541 1.14-.541.286 0 .572.002.822.015.263.013.615-.1.962.734.36.866 1.228 2.997 1.336 3.217.108.22.18.477.036.765-.144.288-.216.469-.432.721-.216.252-.455.563-.65.755-.216.215-.441.45-.19.882.251.432 1.116 1.838 2.394 2.977 1.644 1.464 3.031 1.917 3.463 2.133.432.216.684.18.936-.108.252-.288 1.08-1.26 1.368-1.692.288-.432.576-.36.972-.216.396.144 2.52 1.188 2.952 1.404.432.216.72.324.828.504.108.18.108 1.044-.036 1.449z"/></svg>
+          <span>Chat on WhatsApp Now</span>
+        </a>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="lead-modal-footer">
+        <span>Questions? <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="link-wa">WhatsApp us</a> or <a href="mailto:rajneesh@cafebusiness.in" class="link-mail">Email us</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Bottom Prompt Button -->
+  <button type="button" class="floating-lead-trigger" id="floating-lead-trigger" aria-label="Open Café Advisory Form">
+    <span class="trigger-rocket">🚀</span>
+    <span class="trigger-text">Start Your Café</span>
+  </button>
+
+
   <script>
+
     (() => {
       // 1. Theme Switcher (Fresh Mint / Evening Forest)
       const toggleBtn = document.getElementById('theme-toggle');
@@ -10035,6 +10107,7 @@
       })();
 
     
+      
       // 11. 5-Second Lead Capture Modal & Interactive Handlers
       function initLeadModal() {
         const overlay = document.getElementById('lead-modal-overlay');
@@ -10045,7 +10118,12 @@
         const successUserName = document.getElementById('success-user-name');
         const waDirectBtn = document.getElementById('lead-wa-direct-btn');
 
-        if (!overlay || !form) return;
+        if (!overlay || !form) {
+          console.warn('Lead modal elements missing');
+          return;
+        }
+
+        let isClosedByUser = false;
 
         function openModal() {
           overlay.classList.add('active');
@@ -10057,13 +10135,12 @@
           overlay.classList.remove('active');
           overlay.setAttribute('aria-hidden', 'true');
           document.body.style.overflow = '';
-          sessionStorage.setItem('rajneesh_lead_dismissed', 'true');
+          isClosedByUser = true;
         }
 
-        // Automatic 5-second popup trigger
+        // Automatic 5-second popup trigger: Always opens 5s after page load
         setTimeout(() => {
-          const dismissed = sessionStorage.getItem('rajneesh_lead_dismissed');
-          if (!dismissed) {
+          if (!isClosedByUser && !overlay.classList.contains('active')) {
             openModal();
           }
         }, 5000);
@@ -10090,10 +10167,10 @@
           const optionSelect = document.getElementById('lead-option');
           const budgetSelect = document.getElementById('lead-budget');
 
-          const name = nameInput.value.trim();
-          const phone = phoneInput.value.trim();
-          const option = optionSelect.value;
-          const budget = budgetSelect.value;
+          const name = nameInput ? nameInput.value.trim() : '';
+          const phone = phoneInput ? phoneInput.value.trim() : '';
+          const option = optionSelect ? optionSelect.value : '';
+          const budget = budgetSelect ? budgetSelect.value : '';
 
           if (!name || !phone || !option || !budget) {
             alert('Please fill out all fields before submitting.');
@@ -10102,9 +10179,9 @@
 
           // Build WhatsApp pre-filled enquiry URL
           const msg = encodeURIComponent(
-            `Hello Rajneesh! I would like to book a Café Strategy consultation.\n\n*Name:* ${name}\n*WhatsApp:* ${phone}\n*Requirement:* ${option}\n*Budget:* ${budget}`
+            'Hello Rajneesh! I would like to book a Café Strategy consultation.\n\n*Name:* ' + name + '\n*WhatsApp:* ' + phone + '\n*Requirement:* ' + option + '\n*Budget:* ' + budget
           );
-          const waUrl = `https://wa.me/91XXXXXXXXXX?text=${msg}`;
+          const waUrl = 'https://wa.me/91XXXXXXXXXX?text=' + msg;
 
           if (waDirectBtn) {
             waDirectBtn.href = waUrl;
@@ -10115,8 +10192,9 @@
             successUserName.textContent = name;
           }
           form.style.display = 'none';
-          successBox.style.display = 'block';
-          sessionStorage.setItem('rajneesh_lead_dismissed', 'true');
+          if (successBox) {
+            successBox.style.display = 'block';
+          }
         });
       }
 
@@ -10128,79 +10206,6 @@
 
     })();
   </script>
-
-
-
-      <!-- Modal Header -->
-      <div class="lead-modal-header">
-        <span class="lead-rocket-icon" aria-hidden="true">🚀</span>
-        <h2 class="lead-modal-title" id="lead-modal-title">Start Your Cafe Journey</h2>
-      </div>
-
-      <!-- Form Body -->
-      <form class="lead-modal-form" id="lead-modal-form" novalidate>
-        <div class="lead-form-field">
-          <input type="text" id="lead-name" name="name" class="lead-input" placeholder="Full Name" required autocomplete="name">
-        </div>
-
-        <div class="lead-form-field">
-          <input type="tel" id="lead-phone" name="phone" class="lead-input" placeholder="WhatsApp Number" required autocomplete="tel">
-        </div>
-
-        <div class="lead-form-field">
-          <select id="lead-option" name="option" class="lead-input lead-select" required>
-            <option value="" disabled selected>Select Option</option>
-            <option value="Starting a New Café">Starting a New Café</option>
-            <option value="Scaling an Existing Café">Scaling an Existing Café</option>
-            <option value="Location & Feasibility Audit">Location &amp; Feasibility Audit</option>
-            <option value="Menu Engineering & Costing">Menu Engineering &amp; Costing</option>
-            <option value="Franchise / Expansion Setup">Franchise / Expansion Setup</option>
-          </select>
-        </div>
-
-        <div class="lead-form-field">
-          <select id="lead-budget" name="budget" class="lead-input lead-select" required>
-            <option value="" disabled selected>Select Budget</option>
-            <option value="₹5 Lakhs – ₹15 Lakhs">₹5 Lakhs – ₹15 Lakhs</option>
-            <option value="₹15 Lakhs – ₹30 Lakhs">₹15 Lakhs – ₹30 Lakhs</option>
-            <option value="₹30 Lakhs – ₹50 Lakhs">₹30 Lakhs – ₹50 Lakhs</option>
-            <option value="₹50 Lakhs+">₹50 Lakhs+</option>
-          </select>
-        </div>
-
-        <button type="submit" class="lead-submit-btn" id="lead-submit-btn">
-          <span>Submit</span>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
-        </button>
-      </form>
-
-      <!-- Success State Message -->
-      <div class="lead-modal-success" id="lead-modal-success" style="display: none;">
-        <div class="success-icon-wrap">
-          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"></polyline>
-          </svg>
-        </div>
-        <h3 class="success-title">Application Received!</h3>
-        <p class="success-desc">Thank you, <strong id="success-user-name">Entrepreneur</strong>. Rajneesh's consulting team will reach out to you on WhatsApp within 15 minutes.</p>
-        <a href="https://wa.me/91XXXXXXXXXX" id="lead-wa-direct-btn" target="_blank" rel="noopener noreferrer" class="btn-wa-direct">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.074-2.115-.515-1.815-.752-3.003-2.616-3.094-2.738-.09-.12-1.745-2.324-1.745-4.433 0-2.109 1.107-3.146 1.498-3.578.391-.433.853-.541 1.14-.541.286 0 .572.002.822.015.263.013.615-.1.962.734.36.866 1.228 2.997 1.336 3.217.108.22.18.477.036.765-.144.288-.216.469-.432.721-.216.252-.455.563-.65.755-.216.215-.441.45-.19.882.251.432 1.116 1.838 2.394 2.977 1.644 1.464 3.031 1.917 3.463 2.133.432.216.684.18.936-.108.252-.288 1.08-1.26 1.368-1.692.288-.432.576-.36.972-.216.396.144 2.52 1.188 2.952 1.404.432.216.72.324.828.504.108.18.108 1.044-.036 1.449z"/></svg>
-          <span>Chat on WhatsApp Now</span>
-        </a>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="lead-modal-footer">
-        <span>Questions? <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="link-wa">WhatsApp us</a> or <a href="mailto:rajneesh@cafebusiness.in" class="link-mail">Email us</a></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Floating Bottom Prompt Button -->
-  <button type="button" class="floating-lead-trigger" id="floating-lead-trigger" aria-label="Open Café Advisory Form">
-    <span class="trigger-rocket">🚀</span>
-    <span class="trigger-text">Start Your Café</span>
-  </button>
 
 </body>
 </html>
