@@ -6358,7 +6358,8 @@
 
     @media (max-width: 480px) {
       .orbit-revolving-system {
-        grid-template-columns: 1fr !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
       }
       .proof-badge {
         padding: 8px 10px !important;
@@ -6398,6 +6399,329 @@
       .orbit-revolving-system,
       .orbit-counter-rotate {
         animation: none !important;
+      }
+    }
+
+
+    /* ==========================================================================
+       POPUP LEAD CAPTURE MODAL (Matching Reference Design with 5s Timer)
+       ========================================================================== */
+    .lead-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .lead-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .lead-modal-card {
+      position: relative;
+      background: #171719;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 28px 24px 22px;
+      max-width: 410px;
+      width: 100%;
+      box-shadow: 0 0 50px rgba(240, 90, 40, 0.3), 0 25px 60px rgba(0, 0, 0, 0.85);
+      transform: scale(0.92) translateY(15px);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-sizing: border-box;
+    }
+
+    .lead-modal-overlay.active .lead-modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .lead-modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      font-size: 16px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      line-height: 1;
+    }
+
+    .lead-modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.08);
+    }
+
+    .lead-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-right: 28px;
+    }
+
+    .lead-rocket-icon {
+      font-size: 24px;
+      line-height: 1;
+      filter: drop-shadow(0 2px 8px rgba(240, 90, 40, 0.4));
+      animation: rocketJiggle 2.5s ease-in-out infinite;
+    }
+
+    @keyframes rocketJiggle {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-3px) rotate(4deg); }
+    }
+
+    .lead-modal-title {
+      font-family: var(--font-heading);
+      font-size: 21px;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .lead-modal-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lead-form-field {
+      width: 100%;
+    }
+
+    .lead-input {
+      width: 100%;
+      height: 46px;
+      padding: 0 14px;
+      background: #ffffff;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: var(--font-body);
+      color: #111827;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      box-sizing: border-box;
+    }
+
+    .lead-input:focus {
+      border-color: #f05a28;
+      box-shadow: 0 0 0 3px rgba(240, 90, 40, 0.25);
+    }
+
+    .lead-select {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+      cursor: pointer;
+    }
+
+    .lead-submit-btn {
+      width: 100%;
+      height: 48px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, #f05a28 0%, #ff6b3d 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 6px 20px rgba(240, 90, 40, 0.35);
+      transition: all 0.25s ease;
+    }
+
+    .lead-submit-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow: 0 10px 25px rgba(240, 90, 40, 0.5);
+    }
+
+    .lead-modal-footer {
+      margin-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .lead-modal-footer a {
+      color: #ff7a45;
+      text-decoration: underline;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .lead-modal-footer a:hover {
+      color: #ffa17a;
+    }
+
+    /* Modal Success State */
+    .lead-modal-success {
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    .success-icon-wrap {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(16, 185, 129, 0.15);
+      border: 2px solid #10b981;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 16px;
+      animation: popCheck 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes popCheck {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .success-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .success-desc {
+      font-size: 13.5px;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 18px;
+    }
+
+    .btn-wa-direct {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      height: 46px;
+      background: #25d366;
+      color: #ffffff !important;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 14px;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-wa-direct:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+      box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45);
+    }
+
+    /* Floating Bottom Prompt to Open Modal */
+    .floating-lead-trigger {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 999;
+      background: linear-gradient(135deg, #f05a28 0%, #ff6b3d 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(240, 90, 40, 0.4);
+      transition: all 0.25s ease;
+      animation: pulseGlow 2.5s ease-in-out infinite;
+    }
+
+    .floating-lead-trigger:hover {
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 25px rgba(240, 90, 40, 0.55);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 6px 20px rgba(240, 90, 40, 0.4); }
+      50% { box-shadow: 0 8px 26px rgba(240, 90, 40, 0.65); }
+    }
+
+    /* Mobile Cleanliness & Interactive Milestone Badges */
+    .proof-badge {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+      cursor: pointer;
+    }
+
+    .proof-badge:hover,
+    .proof-badge:active {
+      transform: translateY(-3px) scale(1.02) !important;
+      border-color: var(--accent-mint) !important;
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.18) !important;
+    }
+
+    /* Active Soundwave Animation for 45s Audio Badge */
+    .sound-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2.5px;
+      height: 16px;
+    }
+
+    .sound-bar {
+      width: 2.5px;
+      background: var(--accent-mint);
+      border-radius: 999px;
+      display: block;
+      animation: soundBarPulse 1s ease-in-out infinite;
+    }
+
+    .sound-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
+    .sound-bar:nth-child(2) { height: 14px; animation-delay: 0.2s; }
+    .sound-bar:nth-child(3) { height: 10px; animation-delay: 0.4s; }
+    .sound-bar:nth-child(4) { height: 16px; animation-delay: 0.1s; }
+
+    @keyframes soundBarPulse {
+      0%, 100% { transform: scaleY(0.4); }
+      50% { transform: scaleY(1); }
+    }
+
+    @media (max-width: 480px) {
+      .floating-lead-trigger {
+        bottom: 16px;
+        left: 14px;
+        padding: 8px 14px;
+        font-size: 12px;
       }
     }
 
@@ -8863,6 +9187,12 @@
   </footer>
 
   <!-- Theme Switcher & Interactive Tabs Script -->
+  <!-- 5-Second Interactive Lead Capture Popup Modal (Matching Reference) -->
+  <div class="lead-modal-overlay" id="lead-modal-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+    <div class="lead-modal-card">
+      <!-- Close Button -->
+      <button type="button" class="lead-modal-close" id="lead-modal-close" aria-label="Close Modal">✕</button>
+
   <script>
     (() => {
       // 1. Theme Switcher (Fresh Mint / Evening Forest)
@@ -9454,8 +9784,173 @@
         }
       })();
 
+    
+      // 11. 5-Second Lead Capture Modal & Interactive Handlers
+      function initLeadModal() {
+        const overlay = document.getElementById('lead-modal-overlay');
+        const closeBtn = document.getElementById('lead-modal-close');
+        const triggerBtn = document.getElementById('floating-lead-trigger');
+        const form = document.getElementById('lead-modal-form');
+        const successBox = document.getElementById('lead-modal-success');
+        const successUserName = document.getElementById('success-user-name');
+        const waDirectBtn = document.getElementById('lead-wa-direct-btn');
+
+        if (!overlay || !form) return;
+
+        function openModal() {
+          overlay.classList.add('active');
+          overlay.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+          overlay.classList.remove('active');
+          overlay.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+          sessionStorage.setItem('rajneesh_lead_dismissed', 'true');
+        }
+
+        // Automatic 5-second popup trigger
+        setTimeout(() => {
+          const dismissed = sessionStorage.getItem('rajneesh_lead_dismissed');
+          if (!dismissed) {
+            openModal();
+          }
+        }, 5000);
+
+        // Click listeners
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (triggerBtn) triggerBtn.addEventListener('click', openModal);
+
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) closeModal();
+        });
+
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeModal();
+          }
+        });
+
+        // Form submission handling
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const nameInput = document.getElementById('lead-name');
+          const phoneInput = document.getElementById('lead-phone');
+          const optionSelect = document.getElementById('lead-option');
+          const budgetSelect = document.getElementById('lead-budget');
+
+          const name = nameInput.value.trim();
+          const phone = phoneInput.value.trim();
+          const option = optionSelect.value;
+          const budget = budgetSelect.value;
+
+          if (!name || !phone || !option || !budget) {
+            alert('Please fill out all fields before submitting.');
+            return;
+          }
+
+          // Build WhatsApp pre-filled enquiry URL
+          const msg = encodeURIComponent(
+            `Hello Rajneesh! I would like to book a Café Strategy consultation.\n\n*Name:* ${name}\n*WhatsApp:* ${phone}\n*Requirement:* ${option}\n*Budget:* ${budget}`
+          );
+          const waUrl = `https://wa.me/91XXXXXXXXXX?text=${msg}`;
+
+          if (waDirectBtn) {
+            waDirectBtn.href = waUrl;
+          }
+
+          // Show animated success UI
+          if (successUserName) {
+            successUserName.textContent = name;
+          }
+          form.style.display = 'none';
+          successBox.style.display = 'block';
+          sessionStorage.setItem('rajneesh_lead_dismissed', 'true');
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLeadModal);
+      } else {
+        initLeadModal();
+      }
+
     })();
   </script>
+
+
+
+      <!-- Modal Header -->
+      <div class="lead-modal-header">
+        <span class="lead-rocket-icon" aria-hidden="true">🚀</span>
+        <h2 class="lead-modal-title" id="lead-modal-title">Start Your Cafe Journey</h2>
+      </div>
+
+      <!-- Form Body -->
+      <form class="lead-modal-form" id="lead-modal-form" novalidate>
+        <div class="lead-form-field">
+          <input type="text" id="lead-name" name="name" class="lead-input" placeholder="Full Name" required autocomplete="name">
+        </div>
+
+        <div class="lead-form-field">
+          <input type="tel" id="lead-phone" name="phone" class="lead-input" placeholder="WhatsApp Number" required autocomplete="tel">
+        </div>
+
+        <div class="lead-form-field">
+          <select id="lead-option" name="option" class="lead-input lead-select" required>
+            <option value="" disabled selected>Select Option</option>
+            <option value="Starting a New Café">Starting a New Café</option>
+            <option value="Scaling an Existing Café">Scaling an Existing Café</option>
+            <option value="Location & Feasibility Audit">Location &amp; Feasibility Audit</option>
+            <option value="Menu Engineering & Costing">Menu Engineering &amp; Costing</option>
+            <option value="Franchise / Expansion Setup">Franchise / Expansion Setup</option>
+          </select>
+        </div>
+
+        <div class="lead-form-field">
+          <select id="lead-budget" name="budget" class="lead-input lead-select" required>
+            <option value="" disabled selected>Select Budget</option>
+            <option value="₹5 Lakhs – ₹15 Lakhs">₹5 Lakhs – ₹15 Lakhs</option>
+            <option value="₹15 Lakhs – ₹30 Lakhs">₹15 Lakhs – ₹30 Lakhs</option>
+            <option value="₹30 Lakhs – ₹50 Lakhs">₹30 Lakhs – ₹50 Lakhs</option>
+            <option value="₹50 Lakhs+">₹50 Lakhs+</option>
+          </select>
+        </div>
+
+        <button type="submit" class="lead-submit-btn" id="lead-submit-btn">
+          <span>Submit</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </form>
+
+      <!-- Success State Message -->
+      <div class="lead-modal-success" id="lead-modal-success" style="display: none;">
+        <div class="success-icon-wrap">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#10b981" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <h3 class="success-title">Application Received!</h3>
+        <p class="success-desc">Thank you, <strong id="success-user-name">Entrepreneur</strong>. Rajneesh's consulting team will reach out to you on WhatsApp within 15 minutes.</p>
+        <a href="https://wa.me/91XXXXXXXXXX" id="lead-wa-direct-btn" target="_blank" rel="noopener noreferrer" class="btn-wa-direct">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.074-2.115-.515-1.815-.752-3.003-2.616-3.094-2.738-.09-.12-1.745-2.324-1.745-4.433 0-2.109 1.107-3.146 1.498-3.578.391-.433.853-.541 1.14-.541.286 0 .572.002.822.015.263.013.615-.1.962.734.36.866 1.228 2.997 1.336 3.217.108.22.18.477.036.765-.144.288-.216.469-.432.721-.216.252-.455.563-.65.755-.216.215-.441.45-.19.882.251.432 1.116 1.838 2.394 2.977 1.644 1.464 3.031 1.917 3.463 2.133.432.216.684.18.936-.108.252-.288 1.08-1.26 1.368-1.692.288-.432.576-.36.972-.216.396.144 2.52 1.188 2.952 1.404.432.216.72.324.828.504.108.18.108 1.044-.036 1.449z"/></svg>
+          <span>Chat on WhatsApp Now</span>
+        </a>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="lead-modal-footer">
+        <span>Questions? <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" class="link-wa">WhatsApp us</a> or <a href="mailto:rajneesh@cafebusiness.in" class="link-mail">Email us</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Bottom Prompt Button -->
+  <button type="button" class="floating-lead-trigger" id="floating-lead-trigger" aria-label="Open Café Advisory Form">
+    <span class="trigger-rocket">🚀</span>
+    <span class="trigger-text">Start Your Café</span>
+  </button>
 
 </body>
 </html>
